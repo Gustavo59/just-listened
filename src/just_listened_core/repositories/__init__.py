@@ -1,0 +1,1 @@
+from .postgres_album_repository import PostgresAlbumRepository

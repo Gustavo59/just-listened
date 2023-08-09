@@ -13,6 +13,11 @@ python = "^3.11"
 fastapi = "^0.101.0"
 uvicorn = "^0.23.2"
 alembic = "^1.11.2"
+sqlalchemy = "^2.0.19"
+python-dotenv = "^1.0.0"
+pydantic-settings = "^2.0.2"
+pydantic = "^2.1.1"
+psycopg2-binary = "^2.9.7"
 
 
 [tool.poetry.dev-dependencies]
@@ -31,6 +36,8 @@ pytest-flake8 = "^1.1.1"
 flake8-isort = "^6.0.0"
 pytest-freezegun = "^0.4.2"
 pytest-bdd = "^6.1.1"
+factory-boy = "^3.3.0"
+httpx = "^0.24.1"
 
 [build-system]
 requires = ["poetry-core"]
@@ -39,6 +46,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.isort]
 profile = "black"
 line_length = 120
+skip = ["env", "venv"]
 
 [tool.black]
 line-length = 120
