@@ -1,0 +1,1 @@
+from .album_repository import AlbumRepositoryInterface

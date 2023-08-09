@@ -1,0 +1,1 @@
+from .album_presenter import AlbumPresenterInterface
