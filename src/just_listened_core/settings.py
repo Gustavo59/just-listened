@@ -12,6 +12,12 @@ class DBSettings(BaseSettings):
     DATABASE_URL: PostgresDsn
 
 
+class SpotifyAPISettings(BaseSettings):
+    SPOTIFY_API_URL: str = ""
+    SPOTIFY_CLIENT_ID: str = ""
+    SPOTIFY_CLIENT_SECRET: str = ""
+
+
 class Settings(DBSettings):
     LOG_LEVEL: str = "INFO"
     LOG_FORMAT: str = "%(levelname)-8s %(asctime)s [%(name)s:%(lineno)d] %(message)s"
@@ -35,3 +41,9 @@ def get_settings() -> Settings:
 def get_db_settings() -> DBSettings:
     load_dotenv()
     return DBSettings()
+
+
+@lru_cache
+def get_spotify_settings() -> SpotifyAPISettings:
+    load_dotenv()
+    return SpotifyAPISettings()

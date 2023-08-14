@@ -16,3 +16,11 @@ class DataNotFoundError(JustListenedCoreBaseException):
 class UserInvalidToken(JustListenedCoreBaseException):
     message = "Invalid token"
     http_status = 403
+
+
+class SpotifyConnectionError(JustListenedCoreBaseException):
+    message = "Error while connecting to Spotify API. "
+
+    def __init__(self, http_status, message=None):
+        self.message = self.message + message
+        self.http_status = http_status

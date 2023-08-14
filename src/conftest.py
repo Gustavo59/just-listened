@@ -1,4 +1,3 @@
-import responses
 import pytest
 import responses
 from alembic import command

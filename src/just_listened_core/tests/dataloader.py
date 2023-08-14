@@ -22,3 +22,4 @@ class DataPath:
 
 class DataLoader:
     OAUTH_VERIFY_TOKEN_RESPONSE = DataPath("requests/oauth_verify_token_response.json")
+    SPOTIFY_SEARCH_RESULT = DataPath("json/spotify_search_result.json")

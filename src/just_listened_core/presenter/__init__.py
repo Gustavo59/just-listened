@@ -1,2 +1,3 @@
 from .album_presenter import AlbumPresenter
 from .authentication_presenter import AuthenticationPresenter
+from .spotify_presenter import SpotifyPresenter
