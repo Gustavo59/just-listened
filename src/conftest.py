@@ -1,8 +1,22 @@
+import responses
 import pytest
+import responses
 from alembic import command
 from alembic.config import Config
 from fastapi.testclient import TestClient
 from sqlalchemy.exc import OperationalError
+
+
+class RequestsMock(responses.RequestsMock):
+    @property
+    def call_count(self):
+        return len(self.calls)
+
+
+@pytest.fixture
+def requests_mock():
+    with RequestsMock() as _requests_mock:
+        yield _requests_mock
 
 
 @pytest.fixture(scope="session")

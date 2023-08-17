@@ -1,6 +1,13 @@
 from fastapi import FastAPI
+from fastapi_login import LoginManager
 from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
+
+from just_listened_core.settings import get_settings
+
+settings = get_settings()
+
+login_manager = LoginManager(settings.JWT_SECRET.get_secret_value(), "/auth")
 
 
 def app_factory(title: str = "FastAPI"):

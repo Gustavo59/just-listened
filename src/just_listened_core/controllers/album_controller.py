@@ -27,7 +27,7 @@ class AlbumController:
             except DataNotFoundError:
                 return self._presenter.present_not_found()
             except Exception as exc:
-                raise self._presenter.respond_with_error(exc)
+                raise self._presenter.present_with_error(exc)
 
         return self._presenter.present_found(output_dto=output_dto)
 
@@ -44,6 +44,6 @@ class AlbumController:
             except ValidationError as exc:
                 return self._presenter.present_field_required(exc)
             except Exception as exc:
-                raise self._presenter.respond_with_error(exc)
+                raise self._presenter.present_with_error(exc)
 
         return self._presenter.present_created(output_dto=output_dto)

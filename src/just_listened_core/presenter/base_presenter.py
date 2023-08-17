@@ -33,8 +33,8 @@ class BasePresenter(BasePresenterInterface):
             status_code=status.HTTP_400_BAD_REQUEST,
         )
 
-    def respond_with_error(self, err) -> JSONResponse:
-        """Respond with error
+    def present_with_error(self, err) -> JSONResponse:
+        """Present with error
 
         Args:
             err (Any): Error of any type

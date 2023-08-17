@@ -18,6 +18,11 @@ python-dotenv = "^1.0.0"
 pydantic-settings = "^2.0.2"
 pydantic = "^2.1.1"
 psycopg2-binary = "^2.9.7"
+fastapi-login = "^1.9.1"
+google-auth = "^2.22.0"
+google-cloud-storage = "^2.10.0"
+simplejson = "^3.19.1"
+responses = "^0.23.3"
 
 
 [tool.poetry.dev-dependencies]
