@@ -1,0 +1,16 @@
+{
+    "iss": "https: //accounts.google.com",
+    "azp": "",
+    "aud": "",
+    "sub": "",
+    "email": "john.doe@gmail.com",
+    "email_verified": true,
+    "at_hash": "",
+    "name": "John Doe",
+    "picture": "",
+    "given_name": "John",
+    "family_name": "Doe",
+    "locale": "pt-BR",
+    "iat": 1692294178,
+    "exp": 1692297778
+}

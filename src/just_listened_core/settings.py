@@ -3,6 +3,7 @@ import sys
 from functools import lru_cache
 
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from pydantic.networks import PostgresDsn
 from pydantic_settings import BaseSettings
 
@@ -14,6 +15,8 @@ class DBSettings(BaseSettings):
 class Settings(DBSettings):
     LOG_LEVEL: str = "INFO"
     LOG_FORMAT: str = "%(levelname)-8s %(asctime)s [%(name)s:%(lineno)d] %(message)s"
+    JWT_SECRET: SecretStr = ""
+    TOKEN_EXPIRATION_HOURS: int = 48
 
 
 def _configure_logging(settings: Settings):

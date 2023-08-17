@@ -11,3 +11,8 @@ class JustListenedCoreBaseException(Exception):
 class DataNotFoundError(JustListenedCoreBaseException):
     message = "Data not found in our records"
     http_status = 404
+
+
+class UserInvalidToken(JustListenedCoreBaseException):
+    message = "Invalid token"
+    http_status = 403

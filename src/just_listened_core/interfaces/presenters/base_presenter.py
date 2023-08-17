@@ -18,8 +18,8 @@ class BasePresenterInterface(ABC):
         pass
 
     @abstractmethod
-    def respond_with_error(self, err) -> JSONResponse:
-        """Respond with error
+    def present_with_error(self, err) -> JSONResponse:
+        """Present with error
 
         Args:
             err (Any): Error of any type
