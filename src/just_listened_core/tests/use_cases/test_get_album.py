@@ -4,7 +4,6 @@ import pytest
 
 from just_listened_core.domain.dtos import GetAlbumInputDto
 from just_listened_core.domain.models import Album
-from just_listened_core.presenter import AlbumPresenter
 from just_listened_core.repositories import PostgresAlbumRepository
 from just_listened_core.use_cases import GetAlbum
 
@@ -16,7 +15,7 @@ def album_repository(db_session):
 
 @pytest.fixture
 def use_case(album_repository):
-    return GetAlbum(album_repository=album_repository, presenter=AlbumPresenter())
+    return GetAlbum(album_repository=album_repository)
 
 
 @pytest.fixture(autouse=True)

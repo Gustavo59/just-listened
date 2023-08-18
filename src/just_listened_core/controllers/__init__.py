@@ -1,2 +1,3 @@
 from .album_controller import AlbumController
 from .authentication_controller import AuthenticationController
+from .spotify_controller import SpotifyController

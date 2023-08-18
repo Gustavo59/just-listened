@@ -19,7 +19,7 @@ class AlbumController:
             try:
                 get_album_dto = GetAlbumInputDto(id=id, external_id=external_id)
 
-                use_case = GetAlbum(album_repository=album_repository, presenter=self._presenter)
+                use_case = GetAlbum(album_repository=album_repository)
 
                 output_dto = use_case.run(get_album_dto)
             except ValidationError as exc:
