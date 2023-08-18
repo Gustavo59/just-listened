@@ -1,9 +1,11 @@
-from pathlib import WindowsPath
+import pathlib
 
 from just_listened_core.adapters import deserializer_adapter_function
 
 
-class PathWithLoaders(WindowsPath):
+class PathWithLoaders(pathlib.Path):
+    _flavour = pathlib.Path(".")._flavour
+
     def from_json(self) -> dict:
         return deserializer_adapter_function(self.read_bytes())
 
