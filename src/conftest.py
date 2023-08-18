@@ -1,9 +1,22 @@
+import os
+import sys
+from pathlib import Path
+
 import pytest
 import responses
 from alembic import command
 from alembic.config import Config
 from fastapi.testclient import TestClient
 from sqlalchemy.exc import OperationalError
+
+from just_listened_core.settings import get_db_settings, get_settings
+
+
+def _set_pythonpath():
+    """
+    Set PYTHONPATH so pytest wont complain about missing __init__.py
+    """
+    sys.path.append(str(Path(__file__).parent))
 
 
 class RequestsMock(responses.RequestsMock):
@@ -51,7 +64,7 @@ def db_engine():
         elif "does not exist" in str(err):
             suggestion = (
                 "Did you create a local test database?\n"
-                "suggestion: docker-compose exec db createdb -U test -0 test testd"
+                "suggestion: docker-compose exec db createdb -U test -O test testdb"
             )
         else:
             raise err
@@ -90,3 +103,22 @@ def self_destructible_db(db_engine):
 
     drop_all(engine=db_engine)
     _run_alembic_upgrade()
+
+
+@pytest.fixture(autouse=True, scope="session")
+def _envvars(tmpdir_factory, session_mocker):
+    os.environ.setdefault("TEST_DATABASE_URL", "postgresql://test:test@localhost:54321/testdb")
+    mock_envvars = dict(
+        DATABASE_URL=os.environ["TEST_DATABASE_URL"],
+    )
+    session_mocker.patch.dict(os.environ, mock_envvars)
+    settings = get_settings()
+    get_db_settings()
+    _safety_checks(settings)
+    _set_pythonpath()
+
+
+def _safety_checks(settings):
+    assert (
+        "test" in settings.DATABASE_URL.path
+    ), f"TEST_DATABASE_URL database MUST have 'test' in its name (got {settings.DATABASE_URL.path=})"

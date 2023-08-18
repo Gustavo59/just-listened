@@ -1,15 +1,27 @@
-version: '3.8'
+version: "3.8"
 
 services:
   db:
     image: postgres:15.3
     container_name: just-listened-db
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=just_listened
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: just_listened
     volumes:
-      - postgres_data_just_listened:/var/lib/postgresql/data/
+      - postgres_data_just_listened:/var/lib/postgresql/data
+    ports:
+      - 54321:5432
+
+  migration:
+    container_name: migration
+    build: 
+      dockerfile: deploy/dockerfile.migration
+      context: .
+    environment:
+      DATABASE_URL: postgresql://test:test@just-listened-db:5432/just_listened
+    networks:
+      - default
 
   api:
     container_name: just-listened-api
@@ -17,7 +29,7 @@ services:
       dockerfile: deploy/dockerfile.just_listened_api
       context: .
     environment:
-      - DATABASE_URL=postgresql://postgres:admin@localhost:5432/just_listened
+      DATABASE_URL: postgresql://test:test@just-listened-db:5432/just_listened
     restart: always
     ports:
       - "8005:8000"
@@ -26,3 +38,4 @@ services:
 
 volumes:
   postgres_data_just_listened:
+    external: false

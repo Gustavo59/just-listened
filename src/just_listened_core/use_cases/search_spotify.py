@@ -1,4 +1,4 @@
-from just_listened_core.domain.dtos import SearchSpotifyOutputDto, AlbumSpotifyDto, ArtistSpotifyDto
+from just_listened_core.domain.dtos import AlbumSpotifyDto, ArtistSpotifyDto, SearchSpotifyOutputDto
 from just_listened_core.domain.exceptions import SpotifyConnectionError
 from just_listened_core.interfaces.services import SpotifyServiceInterface
 
